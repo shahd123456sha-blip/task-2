@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+class student {
+    constructor(id,name,grades,attendance) {
+
+this.id=id;
+this.name=name;
+this.grades=grades;
+this.attendance=attendance; }
+ 
+
+getAvg() {   
+    return this.grades.reduce((sum,b)=> sum + b,0) /3;
+}
+    
+   getGrade(avg){
+    if(avg>=90)return "A";
+     else if(avg>=80) return "B";
+     else if(avg>=70) return "C";
+     else if(avg>=60) return "D";
+     else if(avg>=50) return "E";
+     else return "F";
+   }
+    
+
+   getResult(avg){
+   if(avg>=50 && this.attendance>=75)
+      return "ناجح";
+    else return "يحتاج مراجعه";
+
+   }
+}
+   
+    const students =[
+       new student  (1,"ahmed",[90,85,95],90),
+       new student  (2,"mona",[45,45,50],80),
+         new student(3,"ali",[70,75,80],85),
+        new student (4,"sara",[42,45,48],70),
+        ];
+
+    for(let i=0;i<students.length; i++){
+        let avg = students[i].getAvg();
+       console.log("Name:",students[i].name);
+       console.log("Average:",avg);
+        console.log("Graged:", students[i].getGrade(avg));
+        console.log("Result:",students[i].getResult(avg));}
+         
+
+       
+const failed=students.filter(s=>s.getAvg()>=40 && s.getAvg()<=49);
+const s=failed.map(s=>s.getAvg()+5);
+const sum = s.reduce((sum,b)=>sum+b,0);
+let avg =0;
+if(s.length>0){
+    avg=sum/s.length;
+}
+console.log("Average:",avg);
+console.log("Failed students:",failed.map(s=>s.name));
+
+console.log("new averages:",s);
+
+    </script>
+</body>
+</html>
